@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}My Tasks{% endblock %}
+
+{% block content %}
+<h2>My Tasks</h2>
+
+<table border="1" cellpadding="8">
+<tr>
+    <th>Task</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for task in tasks %}
+<tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.status }}</td>
+    <td>
+        <a href="{% url 'update_task' task.id %}">Update</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

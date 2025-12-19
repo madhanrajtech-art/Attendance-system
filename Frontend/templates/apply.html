@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Apply Leave{% endblock %}
+
+{% block content %}
+<h2>Apply Leave</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="date" name="leave_date" required><br><br>
+    <select name="leave_type">
+        <option>Casual</option>
+        <option>Sick</option>
+        <option>Paid</option>
+    </select><br><br>
+    <textarea name="reason" placeholder="Reason"></textarea><br><br>
+    <button>Apply</button>
+</form>
+{% endblock %}

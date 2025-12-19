@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}My Leaves{% endblock %}
+
+{% block content %}
+<h2>Leave History</h2>
+
+<table border="1" cellpadding="8">
+<tr>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Status</th>
+</tr>
+
+{% for leave in leaves %}
+<tr>
+    <td>{{ leave.leave_date }}</td>
+    <td>{{ leave.leave_type }}</td>
+    <td>{{ leave.status }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

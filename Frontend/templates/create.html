@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Create Schedule{% endblock %}
+
+{% block content %}
+<h2>Create Work Schedule</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Shift Name</label><br>
+    <input type="text" name="shift_name" required><br><br>
+
+    <label>Start Time</label><br>
+    <input type="time" name="start_time" required><br><br>
+
+    <label>End Time</label><br>
+    <input type="time" name="end_time" required><br><br>
+
+    <label>Working Days</label><br>
+    <input type="text" name="working_days"
+           placeholder="Mon,Tue,Wed,Thu,Fri" required><br><br>
+
+    <button type="submit">Create Schedule</button>
+</form>
+{% endblock %}

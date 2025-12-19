@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Attendance</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+
+        .box {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button.checkout {
+            background: #dc3545;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Mark Attendance</h2>
+
+    <div class="info">
+        <p>Date: {{ attendance.attendance_date }}</p>
+
+        {% if attendance.check_in %}
+            <p>Check-in Time: {{ attendance.check_in }}</p>
+        {% else %}
+            <p>Check-in: Not marked</p>
+        {% endif %}
+
+        {% if attendance.check_out %}
+            <p>Check-out Time: {{ attendance.check_out }}</p>
+        {% endif %}
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if not attendance.check_in %}
+            <button type="submit">Check In</button>
+        {% elif not attendance.check_out %}
+            <button type="submit" class="checkout">Check Out</button>
+        {% else %}
+            <p class="status">Attendance Completed ✅</p>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

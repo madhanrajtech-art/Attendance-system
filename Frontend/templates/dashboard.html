@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #343a40;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2>Welcome, {{ request.user.username }}</h2>
+    <div>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="cards">
+
+        <div class="card">
+            <h3>Attendance</h3>
+            <p>Mark daily attendance</p>
+            <a href="{% url 'mark_attendance' %}">Mark Attendance</a>
+        </div>
+
+        <div class="card">
+            <h3>Tasks</h3>
+            <p>View assigned tasks</p>
+            <a href="{% url 'task_list' %}">My Tasks</a>
+        </div>
+
+         <!-- Apply Leave -->
+        <div class="card">
+            <h3>Apply Leave</h3>
+            <p>Request leave</p>
+            <a href="{% url 'apply_leave' %}">Apply</a>
+        </div>
+
+        <!-- Leave History -->
+        <div class="card">
+            <h3>Leave History</h3>
+            <p>View leave status</p>
+            <a href="{% url 'leave_list' %}">My Leaves</a>
+        </div>
+
+         <div class="card">
+            <h3>MySchedule</h3>
+            <p>View Schedule</p>
+            <a href="{% url 'my_schedule' %}">My Schedule</a>
+            
+        </div>
+
+
+        {% if request.user.is_staff %}
+        <div class="card">
+            <h3>Admin Panel</h3>
+            <p>Manage system</p>
+            <a href="/admin/">Open Admin</a>
+        </div>
+        {% endif %}
+
+        {% if request.user.is_staff %}
+        <div class="card">
+            <h3>Create Schedule</h3>
+            <p>Create Schedule to Staff</p>
+            <a href="{% url 'create_schedule' %}">Create Schedule</a>
+        </div>
+        {% endif %}
+
+        {% if request.user.is_staff %}
+            <div class="card">
+                <h3>Assign Schedule</h3>
+                <p>Assign schedule to Staff</p>
+                <a href="{% url 'schedule_assign' %}">Assign Schedule</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+</body>
+</html> 
+
+
+ <!-- style="background:#fff;padding:20px;width:200px;border-radius:8px;" -->
